@@ -9,15 +9,15 @@ with open("requirements.txt") as f:
     requirements = f.read().splitlines()
 
 setuptools.setup(
-    name="neispy",
+    name="neis.py",
     version="4.0.2",
     license="MIT",
     author="Ryu ju heon",
-    author_email="SaidBySolo@gmail.com",
-    description="open-neis-api wrapping with aiohttp",
+    author_email="dofiya6199@xindax.com",
+    description="나이스 api를 이용한 파이썬 모듈입니다.",
     long_description=open("README.md", "rt", encoding="UTF8").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/SaidBySolo/neispy",
+    url="https://github.com/disocord/neispy",
     package_data={"neispy": ["py.typed"]},
     packages=setuptools.find_packages(),
     install_requires=requirements,
