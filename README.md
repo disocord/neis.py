@@ -2,28 +2,24 @@
 
 > **동기와 비동기 전부 지원합니다.** **문제 발생시 이슈 넣어주세요!**
 
-[![GitHub license](https://img.shields.io/github/license/SaidBySolo/neispy)](https://github.com/SaidBySolo/neispy/blob/master/LICENSE)
-![Python package](https://github.com/SaidBySolo/neispy/workflows/Python%20package/badge.svg)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/neispy)](https://pypi.org/project/neispy/)
-
 api키는 [이곳](https://open.neis.go.kr/portal/guide/actKeyPage.do)에서 받으실 수 있습니다.
 
 [open Neis api](https://open.neis.go.kr/)의 모든 엔드포인트가 래핑되어있습니다
 
 ```sh
-pip install neispy
+pip install neis.py
 ```
 
 ## 업데이트 방법
 
 ```sh
-pip install --upgrade neispy
+pip install --upgrade neis.py
 ```
 
 ## 사용 예시(비동기)
 
 ```py
-from neispy import Neispy
+from neis.py import Neispy
 from asyncio.events import get_event_loop
 
 
@@ -98,7 +94,7 @@ get_event_loop().run_until_complete(main())
 ## 사용 예시(동기)
 
 ```py
-from neispy import Neispy
+from neis.py import Neispy
 
 name = "인천석천초등학교"
 
@@ -189,148 +185,29 @@ main()
 | pIndex | INTEGER(필수) | 페이지 위치          | 기본값 : 1(sample key는 1 고정)   |
 | pSize  | INTEGER(필수) | 페이지 당 신청 숫자  | 기본값 : 100(sample key는 5 고정) |
 
+
+
+## 급식 값
+
+| 목차 | 변수          | 변수 설명            | 
+| ------ | ------------- | -------------------- |
+1|ATPT_OFCDC_SC_CODE|시도교육청코드|
+2|ATPT_OFCDC_SC_NM|시도교육청명|
+3|SD_SCHUL_CODE|표준학교코드|
+4|SCHUL_NM|학교명|
+5|MMEAL_SC_CODE|식사코드|
+6|MMEAL_SC_NM|식사명|
+7|MLSV_YMD|급식일자|
+8|MLSV_FGR|급식인원수|
+9|DDISH_NM|요리명|
+10|ORPLC_INFO|원산지정보|
+11|CAL_INFO|칼로리정보|
+12|NTR_INFO|영양정보|
+13|MLSV_FROM_YMD|급식시작일자|
+14|MLSV_TO_YMD|급식종료일자|
+
 * [데이터셋](https://open.neis.go.kr/portal/data/dataset/searchDatasetPage.do)
 
 **시간표 같은 부분은 초,중,고,특수인걸 제외하고는 모두 같습니다.**
 
 **Attribute도 데이터셋을 참고해주시기바랍니다.**
-
-## Release note
-
-### 4.0.0
-
-* 클래스명 변경 ``Client`` -> ``Neispy``.
-* 이제 ``ClientSession``을 요청마다 생성하지 않습니다.
-* ``now()``함수가 더 이상 적용되지않음.
-* ``async with`` 구문을 지원함.
-* 기존 모델에서 SimpleNamespace로 변경
-* 동기로 사용할시 클래스메소드 ``.sync()``의 반환값인 ``SyncNeispy``를 사용해야함
-* 타입힌트가 좀 더 정확히 적용됨
-
-### 3.2.2
-
-* 사용하지 않는 모듈 제거후 재배포
-
-### 3.2.1
-
-* #43(#42번 이슈) PR적용
-
-### 3.2.0
-
-* #41 PR적용
-
-### 3.1.0
-
-* #40(#39번 이슈) PR적용
-
-### 3.0.0
-
-* #28(#17번 이슈) #31(#30번 이슈) #34(#33번 이슈) #36 PR적용
-
-* 동기 비동기 클라이언트를 나누지않고 사용할수있습니다.
-
-* 모델의 많은변화가있습니다. 예제를 참고해주세요
-
-### 2.0.7
-
-* neispy는 이제 UTC+9:00를 기준으로 가져옵니다.
-
-### 2.0.6
-
-* #25번 이슈적용
-
-* APIKeyNotFound예외를 force인자를 통해 무시할수있습니다.
-
-* 시간표에 빠져있던 강의실명 파라미터를 추가했습니다.
-
-### 2.0.4
-
-* #22번(#21번 이슈), #23번 PR적용
-
-### 2.0.3
-
-* #20번 PR 적용
-
-### 2.0.2
-
-* Fixed #15
-
-* 시간표에 빠져있던 인자들 추가
-
-### 2.0.1
-
-* 날짜형식이 20200101과 같은 형식으로 안나오는 문제 해결
-
-### 2.0.0
-
-* 동기 요청이 가능합니다.
-
-### 1.0.0
-
-* 모든 엔드포인트를 커버합니다.
-
-### 0.6.0
-
-* 모델 적용완료
-
-* 반정보 엔드포인트 커버 완료
-
-* 모든 정보가 필요할때 rawdata를 이용하여 리스트로 가져올수있습니다.
-
-### 0.5.0
-
-* Model 메커니즘 변경
-
-* docstring 추가
-
-### 0.4.0
-
-* 초,중,고 시간표엔드포인트 커버가능
-
-### 0.3.4
-
-* Model 메커니즘 변경
-
-### 0.3.3
-
-* Model클래스에서 sort_meal함수의 이름이달라 생긴문제 수정
-
-### 0.3.2
-
-* 코드 퀄리티 향상
-
-### 0.3.1
-
-* 코드 퀄리티 향상
-
-### 0.3.0
-
-* **코드 다시 쓰기 분기 합병**
-* 학원교습소 정보 추가
-* 예외처리 추가
-* 코드 최적화
-
-### 0.2.3
-
-* 초등학생 시간표 추가
-
-### 0.2.2
-
-* Issue #1 버그수정
-* 샘플키로 요청하도록 변경
-
-### 0.2.1
-
-* 학사일정 추가
-
-### 0.2.0
-
-* 학교정보,급식일정 모든 인자값 받을수있음.
-
-### 0.1.1
-
-* 사용하지 않는 모듈 제거,사용하기쉽도록 함수이름 변경
-
-### 0.1.0
-
-* 첫 배포 시작
